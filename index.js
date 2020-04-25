@@ -69,7 +69,7 @@ const fs = require("fs");
 ];
 
 inquirer.prompt(questions)
-.then( ({ userName, email, url, title, description, license}) => { 
+.then( ({ userName, email, url, title, description, license, installation, tests, usage, contributing}) => { 
 
   // console.log(userName);
   // console.log(email);
@@ -100,21 +100,30 @@ inquirer.prompt(questions)
     readmeInfo += `## Description\n${description}\n`
 
     //Table of Contents
-    readmeInfo += `## Table Of Contents\n\n* [Installation](#installation)\n* [Usage](#usage)\n* [Credits](#credits)\n* [License](#license)`
+    readmeInfo += `## Table Of Contents\n\n* [Installation](#installation)\n* [Usage](#usage)\n* [Credits](#credits)\n* [License](#license)\n\n`
 
     //Installation
+    readmeInfo += `## Installation\n\n${installation}\n\n`
 
     //Usage
+    readmeInfo += `## Usage\n\n${usage}\n\n`
 
     //License
 
+    readmeInfo += `## License\n\n${license}\n\n`
+
     //Contributing
+    readmeInfo += `## Contributing\n\n${contributing}\n\n`
 
     //Tests
+    readmeInfo += `## Tests\n\n${tests}\n\n`
 
     //Questions
       //Github Profile Pic w/ badge
+      //error message for pic, need ot reasearch passing that in to the file a different way
       //Email  
+
+    readmeInfo += `## Questions\n\n- ${bioPic}\n- ${email}`  
 
     console.log(readmeInfo)
 
