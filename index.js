@@ -49,20 +49,40 @@ const fs = require("fs");
   },
   {
     type: "list",
-    name: "liscense",
+    name: "license",
     message: "What kind of license should your project have?",
     choices: [
-      "GPL", 
-      "MIT", 
-      "Apache 2.0",
+      "GNU General Public License v3.0", 
+      "MIT License", 
+      "Apache License 2.0",
       "none" 
     ]
   }
 ];
 
-inquirer.prompt(questions).then(answers => {
+inquirer.prompt(questions)
+.then( ({ userName, email, url, title, description, license}) => { 
 
-  console.log(answers);
+  // console.log(userName);
+  // console.log(email);
+  // console.log(url);
+  // console.log(title);
+  // console.log(description);
+  // console.log(license);
+
+  const queryUrl = `https://api.github.com/users/${userName}`;
+  axios
+  .get(queryUrl)
+  .then(resp => {
+    console.log(resp.data.avatar_url)
+  })
+
+
+  //the response strigify if needed...
+  // console.log(JSON.stringify(answers, null, '  '))
+
+  //axios for grabbing github info
+  
 });
 // -- They give us a writeToFile() FUNCTION, Looks like we may need to read/write to a file. What BUILT-IN node module will help us out with this (?) -- // 
 
