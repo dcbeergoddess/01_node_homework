@@ -83,6 +83,7 @@ inquirer.prompt(questions)
   .get(queryUrl)
   .then(resp => {
     console.log(resp.data.avatar_url)
+    //NEED ERROR MESSAGE FOR BAD USER NAME INPUT
 
     const bioPic = resp.data.avatar_url 
 
@@ -91,13 +92,15 @@ inquirer.prompt(questions)
     //creating readmeInfo variable using let to continue to add readme data from user
 
     //project title
-    let readmeInfo = `# ${title}`
+    let readmeInfo = `# ${title}\n\n`
 
     //try to throw a badge in here based on users repo
 
     //Description
+    readmeInfo += `## Description\n${description}\n`
 
     //Table of Contents
+    readmeInfo += `## Table Of Contents\n\n* [Installation](#installation)\n* [Usage](#usage)\n* [Credits](#credits)\n* [License](#license)`
 
     //Installation
 
