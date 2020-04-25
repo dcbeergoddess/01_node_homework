@@ -7,19 +7,7 @@ const fs = require("fs");
 // this question array with be for the functions, treat each question as a function.
 
 
-/*
-“What is your GitHub username?”
-“What is your email?”
-“the URL to your project?”
-“What is your project’s name?”
-“Please write a short description of your project”
-“What kind of license should your project have?” - This one should be a list
-“What command should be run to install dependencies?”
-“What command should be run to run tests?”
-“What does the user need to know about using the repo?”
-“What does the user need to know about contributing to the repo?”
-*/
-
+//Questions for User
 
   const questions = [
   {
@@ -57,7 +45,27 @@ const fs = require("fs");
       "Apache License 2.0",
       "none" 
     ]
-  }
+  },
+  {
+    type: "input",
+    name: "installation",
+    message: "What command should be run to install dependencies?"
+  },
+  {
+    type: "input",
+    name: "tests",
+    message: "What command should be run to run tests?"
+  },
+  {
+    type: "input",
+    name: "usage",
+    message: "What does the user need to know about using the repo"
+  },
+  {
+    type: "input",
+    name: "contributing",
+    message: "What does the user need to know about contributing to the repo?"
+  },
 ];
 
 inquirer.prompt(questions)
@@ -75,6 +83,45 @@ inquirer.prompt(questions)
   .get(queryUrl)
   .then(resp => {
     console.log(resp.data.avatar_url)
+
+    const bioPic = resp.data.avatar_url 
+
+    // console.log(bioPic)
+
+    //creating readmeInfo variable using let to continue to add readme data from user
+
+    //project title
+    let readmeInfo = `# ${title}`
+
+    //try to throw a badge in here based on users repo
+
+    //Description
+
+    //Table of Contents
+
+    //Installation
+
+    //Usage
+
+    //License
+
+    //Contributing
+
+    //Tests
+
+    //Questions
+      //Github Profile Pic w/ badge
+      //Email  
+
+    console.log(readmeInfo)
+
+    fs.writeFile("userREADME.md", readmeInfo, err => {
+      if(err){
+        return console.log(err)
+      }
+      console.log("Success!")
+    })
+
   })
 
 
