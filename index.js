@@ -9,11 +9,19 @@ const fs = require("fs");
 
 //Questions for User
 
-  const questions = [
+const questions = [
   {
     type: "input",
     name: "userName",
-    message: "What is your Github username?"
+    message: "What is your Github username?",
+    //   validate: function(value) {
+    //   const confirm = value.match(
+    //   );
+    //   if (pass) {
+    //     return true;
+    //   }
+    //   return 'Please enter a valid username';
+    // }
   },
   {
     type: "input",
@@ -23,12 +31,12 @@ const fs = require("fs");
   {
     type: "input",
     name: "url",
-    message: "What is the URL to your project?"
+    message: "What is the URL to your GitHub project repo?"
   },
   {
     type: "input",
     name: "title",
-    message: "What is your Project Title",
+    message: "What is your GitHub Project Title",
   },
   {
     type: "input",
@@ -40,10 +48,10 @@ const fs = require("fs");
     name: "license",
     message: "What kind of license should your project have?",
     choices: [
-      "GNU General Public License v3.0", 
-      "MIT License", 
+      "GNU General Public License v3.0",
+      "MIT License",
       "Apache License 2.0",
-      "none" 
+      "none"
     ]
   },
   {
@@ -69,70 +77,88 @@ const fs = require("fs");
 ];
 
 inquirer.prompt(questions)
-.then( ({ userName, email, url, title, description, license, installation, tests, usage, contributing}) => { 
+  .then(({ userName, email, url, title, description, license, installation, tests, usage, contributing }) => {
 
-  // console.log(userName);
-  // console.log(email);
-  // console.log(url);
-  // console.log(title);
-  // console.log(description);
-  // console.log(license);
+    // console.log(userName);
+    // console.log(email);
+    // console.log(url);
+    // console.log(title);
+    // console.log(description);
+    // console.log(license);
 
-  const queryUrl = `https://api.github.com/users/${userName}`;
-  axios
-  .get(queryUrl)
-  .then(resp => {
-    console.log(resp.data.avatar_url)
-    //NEED ERROR MESSAGE FOR BAD USER NAME INPUT
+    const queryUrl = `https://api.github.com/users/${userName}`;
 
-    const bioPic = resp.data.avatar_url 
+    // const queryUrl2 = `https://api.github.com/users/${userName}/repos/`;
 
-    // console.log(bioPic)
+    axios
+      .get(queryUrl)
+      .then(resp => {
+        console.log(resp.data)
+        //NEED ERROR MESSAGE FOR BAD USER NAME INPUT
+        const bioPic = resp.data.avatar_url
 
-    //creating readmeInfo variable using let to continue to add readme data from user
+        // axios
+        // .get(queryUrl2)
+        // .then(resp2 =>{
 
-    //project title
-    let readmeInfo = `# ${title}\n\n`
+        //   console.log (resp2.data.owner.html_url)
+        // ***Was tring to figure out how to grab the repo url from the github api. couldn't quite firgure it out so I ended up going a different route to use that info in badges.
+        // const repoBadge = userName
 
-    //try to throw a badge in here based on users repo
 
-    //Description
-    readmeInfo += `## Description\n${description}\n`
 
-    //Table of Contents
-    readmeInfo += `## Table Of Contents\n\n* [Installation](#installation)\n* [Usage](#usage)\n* [Credits](#credits)\n* [License](#license)\n\n`
+        // console.log(bioPic)
 
-    //Installation
-    readmeInfo += `## Installation\n\n${installation}\n\n`
+        //creating readmeInfo variable using let to continue to add readme data from user
 
-    //Usage
-    readmeInfo += `## Usage\n\n${usage}\n\n`
+        //project title
+        let readmeInfo = `# ${title}\n\n`
 
-    //License
+        //try to throw a badge in here based on users repo
+        // readmeInfo += `[![link to project repo](https://img.shields.io/badge/%20link-to-repo%3F-brightgreen.svg?style=flat)](${url})\n\n`
 
-    readmeInfo += `## License\n\n${license}\n\n`
+        readmeInfo += `Link to GitHub Rep Here: [![GitHub commit activity](https://img.shields.io/github/commit-activity/m/${userName}/${title})](${url})\n\n`
 
-    //Contributing
-    readmeInfo += `## Contributing\n\n${contributing}\n\n`
+        //Description
+        readmeInfo += `## Description\n${description}\n`
 
-    //Tests
-    readmeInfo += `## Tests\n\n${tests}\n\n`
+        //Table of Contents
+        readmeInfo += `## Table Of Contents\n\n* [Installation](#installation)\n* [Usage](#usage)\n* [License](#license)\n*[Contribuiting](#contributing)\n*[Tests}(#tests)\n*[Question](#questions)\n\n`
 
-    //Questions
-      //Github Profile Pic w/ badge
-      //error message for pic, need ot reasearch passing that in to the file a different way
-      //Email  
+        //Installation
+        readmeInfo += `## Installation\n\n${installation}\n\n`
 
-    readmeInfo += `## Questions\n\n- ${bioPic}\n- ${email}`  
+        //Usage
+        readmeInfo += `## Usage\n\n${usage}\n\n`
 
-    console.log(readmeInfo)
+        //License
 
-    fs.writeFile("userREADME.md", readmeInfo, err => {
-      if(err){
-        return console.log(err)
-      }
-      console.log("Success!")
-    })
+        // readmeInfo += `## License\n\n![APM](https://img.shields.io/apm/l/${license})\n\n`
+        
+        readmeInfo += `##License\n\n${license}\n\n`
+
+        //Contributing
+        readmeInfo += `## Contributing\n\n${contributing}\n\n`
+
+        //Tests
+        readmeInfo += `## Tests\n\n${tests}\n\n`
+
+        //Questions
+        //Github Profile Pic w/ badge
+        //error message for pic, need ot reasearch passing that in to the file a different way
+        //Email  
+
+        readmeInfo += `## Questions\n\n- ${bioPic}\n- ${email}`
+
+        console.log(readmeInfo)
+
+        fs.writeFile("userREADME.md", readmeInfo, err => {
+          if (err) {
+            return console.log(err)
+          }
+          console.log("Success!")
+        // })
+      })
 
   })
 
@@ -143,7 +169,7 @@ inquirer.prompt(questions)
   //axios for grabbing github info
   
 });
-// -- They give us a writeToFile() FUNCTION, Looks like we may need to read/write to a file. What BUILT-IN node module will help us out with this (?) -- // 
+// -- They give us a writeToFile() FUNCTION, Looks like we may need to read/write to a file. What BUILT-IN node module will help us out with this (?) -- //
 
 // function writeToFile(fileName, data) {
 // }
