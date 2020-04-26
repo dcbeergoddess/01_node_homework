@@ -35,7 +35,7 @@ const questions = [
   },
   {
     type: "input",
-    name: "title",
+    name: "projectTitle",
     message: "What is your GitHub Project Title",
   },
   {
@@ -74,10 +74,15 @@ const questions = [
     name: "contributing",
     message: "What does the user need to know about contributing to the repo?"
   },
+  {
+    type: "input",
+    name: "title",
+    message: "What Project Title would you like to use for your readme title?"
+  }
 ];
 
 inquirer.prompt(questions)
-  .then(({ userName, email, url, title, description, license, installation, tests, usage, contributing }) => {
+  .then(({ userName, email, url, projectTitle, description, license, installation, tests, usage, contributing, title }) => {
 
     // console.log(userName);
     // console.log(email);
@@ -93,7 +98,7 @@ inquirer.prompt(questions)
     axios
       .get(queryUrl)
       .then(resp => {
-        console.log(resp.data)
+        // console.log(resp.data)
         //NEED ERROR MESSAGE FOR BAD USER NAME INPUT
         const bioPic = resp.data.avatar_url
 
@@ -117,16 +122,16 @@ inquirer.prompt(questions)
         //try to throw a badge in here based on users repo
         // readmeInfo += `[![link to project repo](https://img.shields.io/badge/%20link-to-repo%3F-brightgreen.svg?style=flat)](${url})\n\n`
 
-        readmeInfo += `Link to GitHub Rep Here: [![GitHub commit activity](https://img.shields.io/github/commit-activity/m/${userName}/${title})](${url})\n\n`
+        readmeInfo += `**Link to GitHub Rep Here =>** [![GitHub commit activity](https://img.shields.io/github/commit-activity/m/${userName}/${projectTitle})](${url})\n\n`
 
         //Description
-        readmeInfo += `## Description\n${description}\n`
+        readmeInfo += `## Description\n\n${description}\n\n`
 
         //Table of Contents
-        readmeInfo += `## Table Of Contents\n\n* [Installation](#installation)\n* [Usage](#usage)\n* [License](#license)\n*[Contribuiting](#contributing)\n*[Tests}(#tests)\n*[Question](#questions)\n\n`
+        readmeInfo += `## Table Of Contents\n\n* [Installation](#installation)\n* [Usage](#usage)\n* [License](#license)\n* [Contribuiting](#contributing)\n* [Tests](#tests)\n* [Question](#questions)\n\n`
 
         //Installation
-        readmeInfo += `## Installation\n\n${installation}\n\n`
+        readmeInfo += `## Installation\n\nInstall dependencies using command bellow\n- ${installation}\n\n`
 
         //Usage
         readmeInfo += `## Usage\n\n${usage}\n\n`
@@ -135,22 +140,22 @@ inquirer.prompt(questions)
 
         // readmeInfo += `## License\n\n![APM](https://img.shields.io/apm/l/${license})\n\n`
         
-        readmeInfo += `##License\n\n${license}\n\n`
+        readmeInfo += `## License\n\n${license}\n\n`
 
         //Contributing
         readmeInfo += `## Contributing\n\n${contributing}\n\n`
 
         //Tests
-        readmeInfo += `## Tests\n\n${tests}\n\n`
+        readmeInfo += `## Tests\n\nTest the application and generate a README using the following command\n- ${tests}\n\n`
 
         //Questions
         //Github Profile Pic w/ badge
         //error message for pic, need ot reasearch passing that in to the file a different way
         //Email  
 
-        readmeInfo += `## Questions\n\n- ${bioPic}\n- ${email}`
+        readmeInfo += `## Questions\n\n${bioPic}\n* [**Contact Me**](mailto:${email}?subject=${projectTitle})`
 
-        console.log(readmeInfo)
+        // console.log(readmeInfo)
 
         fs.writeFile("userREADME.md", readmeInfo, err => {
           if (err) {

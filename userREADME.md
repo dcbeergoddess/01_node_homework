@@ -1,39 +1,43 @@
-# project_01
+# Node README Generator
 
-Link to GitHub Rep Here: [![GitHub commit activity](https://img.shields.io/github/commit-activity/m/dcbeergoddess/project_01)](https://github.com/dcbeergoddess/project_01)
+**Link to GitHub Rep Here =>** [![GitHub commit activity](https://img.shields.io/github/commit-activity/m/dcbeergoddess/readmeGenerator)](https://github.com/dcbeergoddess/readmeGenerator)
 
 ## Description
-Hello
+
+This README Generator is designed to help the user quickly create a readme file for their own going GitHub project repo. User should already have a repository link and project name in order to generate the readme file properly. Once the file generates the user and copy and add it to their repo’s root directory. 
+
 ## Table Of Contents
 
 * [Installation](#installation)
 * [Usage](#usage)
 * [License](#license)
-*[Contribuiting](#contributing)
-*[Tests}(#tests)
-*[Question](#questions)
+* [Contribuiting](#contributing)
+* [Tests](#tests)
+* [Question](#questions)
 
 ## Installation
 
-none
+Install dependencies using command bellow
+- npm install
 
 ## Usage
 
-website
+Make sure to input GitHub username and repo project info correctly to get the most out of what the app can render for you!
 
-##License
+## License
 
 MIT License
 
 ## Contributing
 
-nada
+n/a
 
 ## Tests
 
-none
+Test the application and generate a README using the following command
+- node index.js
 
 ## Questions
 
-- https://avatars0.githubusercontent.com/u/59098488?v=4
-- dcbeergoddess@gmail.com
+https://avatars0.githubusercontent.com/u/59098488?v=4
+* [**Contact Me**](mailto:dcbeergoddess@gmail.com?subject=readmeGenerator)
