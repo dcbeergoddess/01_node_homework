@@ -153,7 +153,7 @@ inquirer.prompt(questions)
         //error message for pic, need ot reasearch passing that in to the file a different way
         //Email  
 
-        readmeInfo += `## Questions\n\n${bioPic}\n* [**Contact Me**](mailto:${email}?subject=${projectTitle})`
+        readmeInfo += `## Questions\n\n![Image of ${userName}](${bioPic})\n* [**Contact Me**](mailto:${email}?subject=${projectTitle})`
 
         // console.log(readmeInfo)
 
