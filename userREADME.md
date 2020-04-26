@@ -39,5 +39,5 @@ Test the application and generate a README using the following command
 
 ## Questions
 
-https://avatars0.githubusercontent.com/u/59098488?v=4
+![Image of dcbeergoddess](https://avatars0.githubusercontent.com/u/59098488?v=4&s=200)
 * [**Contact Me**](mailto:dcbeergoddess@gmail.com?subject=readmeGenerator)
