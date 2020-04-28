@@ -1,6 +1,6 @@
 # Node README Generator
 
-**Link to GitHub Rep Here =>** [![GitHub commit activity](https://img.shields.io/github/commit-activity/m/dcbeergoddess/readmeGenerator)](https://github.com/dcbeergoddess/readmeGenerator)
+**Link to GitHub Repo Here =>** [![GitHub commit activity](https://img.shields.io/github/commit-activity/m/dcbeergoddess/readmeGenerator)](https://github.com/dcbeergoddess/readmeGenerator)
 
 ## Description
 

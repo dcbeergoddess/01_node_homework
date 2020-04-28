@@ -122,7 +122,7 @@ inquirer.prompt(questions)
         //try to throw a badge in here based on users repo
         // readmeInfo += `[![link to project repo](https://img.shields.io/badge/%20link-to-repo%3F-brightgreen.svg?style=flat)](${url})\n\n`
 
-        readmeInfo += `**Link to GitHub Rep Here =>** [![GitHub commit activity](https://img.shields.io/github/commit-activity/m/${userName}/${projectTitle})](${url})\n\n`
+        readmeInfo += `**Link to GitHub Repo Here =>** [![GitHub commit activity](https://img.shields.io/github/commit-activity/m/${userName}/${projectTitle})](${url})\n\n`
 
         //Description
         readmeInfo += `## Description\n\n${description}\n\n`
